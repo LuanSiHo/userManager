@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".ListUserActivity">
         </activity>
+        <activity android:name=".UserInfoActivity">
+        </activity>
     </application>
 
 </manifest>

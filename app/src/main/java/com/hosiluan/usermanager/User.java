@@ -1,10 +1,13 @@
 package com.hosiluan.usermanager;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Ho Si Luan on 10/29/2017.
  */
 
-public class User  {
+public class User implements Parcelable {
 
     private int mId;
     private String mFirstName;
@@ -32,6 +35,27 @@ public class User  {
         this.mBirthday = mBirthday;
         this.mAddress = mAddress;
     }
+
+    protected User(Parcel in) {
+        mId = in.readInt();
+        mFirstName = in.readString();
+        mLastName = in.readString();
+        mEmail = in.readString();
+        mBirthday = in.readString();
+        mAddress = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public int getmId() {
         return mId;
@@ -79,5 +103,20 @@ public class User  {
 
     public void setmAddress(String mAddress) {
         this.mAddress = mAddress;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(mId);
+        parcel.writeString(mFirstName);
+        parcel.writeString(mLastName);
+        parcel.writeString(mEmail);
+        parcel.writeString(mBirthday);
+        parcel.writeString(mAddress);
     }
 }
