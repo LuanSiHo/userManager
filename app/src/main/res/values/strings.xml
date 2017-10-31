@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">User Manager</string>
+    <integer-array name="menu_image">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_list_user</item>
+        <item>@drawable/ic_about</item>
+    </integer-array>
 </resources>
