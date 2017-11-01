@@ -1,20 +1,24 @@
 package com.hosiluan.usermanager;
 
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-public class ShowDialogActivity extends AppCompatActivity {
+public class ShowDialogActivity extends AppCompatActivity implements GestureDetector.OnGestureListener{
 
 
-    private Button showProgressbarButton, showSingleDialogButton, showTwoOptionDialog,
-            showSlideUpFromBottomButton;
+    private Button showProgressbarButton, showSingleDialogButton, showTwoOptionDialog, showSlideUpFromBottomButton;
     private ProgressBar progressBar;
+    GestureDetector detector;
 
     private WarningLayout warningLayout;
 
@@ -24,10 +28,12 @@ public class ShowDialogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_dialog);
         setView();
         setEvent();
-
     }
 
     private void setView() {
+
+        detector=new GestureDetector(this);
+
         showProgressbarButton = (Button) findViewById(R.id.btn_show_progress_bar);
         showSingleDialogButton = (Button) findViewById(R.id.btn_show_single_dialog);
         showTwoOptionDialog = (Button) findViewById(R.id.btn_show_two_option_dialog);
@@ -42,15 +48,17 @@ public class ShowDialogActivity extends AppCompatActivity {
             }
         });
 
-//        warningLayout.setmWarningButtonBackgroundColor(R.color.colorPrimary);
-//        warningLayout.setmWarningButtonText("Click me");
-//        warningLayout.setmWarningButtonTextColor(R.color.colorAccent);
-//        warningLayout.setmWarningButtonTextSize(25);
-//
-//        warningLayout.setmWarningTextColor(R.color.colorRed);
-//        warningLayout.setmWarningText("Changed warning text");
-//
-//        warningLayout.setmWarningImageResource(R.drawable.ic_google);
+        warningLayout.setmWarningButtonBackgroundColor(R.color.colorRed);
+
+
+        warningLayout.setmWarningButtonText("Click me");
+        warningLayout.setmWarningButtonTextColor(R.color.colorAccent);
+        warningLayout.setmWarningButtonTextSize(16);
+
+        warningLayout.setmWarningTextColor(R.color.colorRed);
+        warningLayout.setmWarningText("Changed warning text");
+
+        warningLayout.setmWarningImageResource(R.drawable.ic_google);
     }
 
     private void setEvent() {
@@ -175,6 +183,87 @@ public class ShowDialogActivity extends AppCompatActivity {
             }
         });
         thread.start();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return detector.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+//        Toast.makeText(getApplicationContext(), "OnDown Gesture", Toast.LENGTH_LONG).show();
+        return false;
+    }
+//
+//    @Override
+//    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+//        Toast.makeText(getApplicationContext(), "Fling Gesture",  Toast.LENGTH_LONG).show();
+//        return true;
+//    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+//        Toast.makeText(getApplicationContext(), "Long Press Gesture",  Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+//        Toast.makeText(getApplicationContext(), "Scroll Gesture",  Toast.LENGTH_LONG).show();
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+//        Toast.makeText(getApplicationContext(), "Show Press gesture",  Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+//        Toast.makeText(getApplicationContext(), "Single Tap Gesture",  Toast.LENGTH_LONG).show();
+        return true;
+    }
+
+
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        Toast.makeText(this, "Fling", Toast.LENGTH_SHORT).show();
+        switch (getSlope(motionEvent.getX(), motionEvent.getY(), motionEvent1.getX(), motionEvent1.getY())) {
+            case 1:
+                Log.d("Luan", "top");
+                return true;
+            case 2:
+                Log.d("Luan", "left");
+                return true;
+            case 3:
+                Log.d("Luan", "down");
+                return true;
+            case 4:
+                Log.d("Luan", "right");
+                return true;
+        }
+        return false;
+    }
+
+
+
+
+    private int getSlope(float x1, float y1, float x2, float y2) {
+        Double angle = Math.toDegrees(Math.atan2(y1 - y2, x2 - x1));
+        if (angle > 45 && angle <= 135)
+            // top
+            return 1;
+        if (angle >= 135 && angle < 180 || angle < -135 && angle > -180)
+            // left
+            return 2;
+        if (angle < -45 && angle >= -135)
+            // down
+            return 3;
+        if (angle > -45 && angle <= 45)
+            // right
+            return 4;
+        return 0;
     }
 
 }

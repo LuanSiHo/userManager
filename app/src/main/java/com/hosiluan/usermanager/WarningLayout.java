@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -45,42 +46,42 @@ public class WarningLayout extends LinearLayout {
 
     public WarningLayout(Context context) {
         super(context);
-        LayoutInflater.from(context).inflate(R.layout.layout_warning,this);
+        LayoutInflater.from(context).inflate(R.layout.layout_warning, this);
 
     }
 
     public WarningLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        initView(context,attrs);
+        initView(context, attrs);
     }
 
     public WarningLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView(context,attrs);
+        initView(context, attrs);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public WarningLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initView(context,attrs);
+        initView(context, attrs);
     }
 
-    private void initView(Context context, AttributeSet attrs){
+    private void initView(Context context, AttributeSet attrs) {
 
-        TypedArray a = context.getTheme().obtainStyledAttributes(attrs,R.styleable.WarningLayout,0,0);
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.WarningLayout, 0, 0);
 
         mWarningText = a.getString(R.styleable.WarningLayout_mWarningText);
         mWarningTextColor = a.getColor(R.styleable.WarningLayout_warningTextColor, Color.WHITE);
-        mWarningTextSize = a.getDimension(R.styleable.WarningLayout_warningTextSize,16);
+        mWarningTextSize = a.getDimension(R.styleable.WarningLayout_warningTextSize, 16);
 
         mWarningButtonText = a.getString(R.styleable.WarningLayout_warningButtonText);
-        mWarningButtonTextSize = a.getDimension(R.styleable.WarningLayout_warningButtonTextSize,16);
-        mWarningButtonBackgroundColor = a.getColor(R.styleable.WarningLayout_warningButtonBackgroundColor,Color.WHITE);
-        mWarningButtonTextColor = a.getColor(R.styleable.WarningLayout_warningButtonTextColor,Color.WHITE);
+        mWarningButtonTextSize = a.getDimension(R.styleable.WarningLayout_warningButtonTextSize, 16);
+        mWarningButtonBackgroundColor = a.getColor(R.styleable.WarningLayout_warningButtonBackgroundColor, Color.WHITE);
+        mWarningButtonTextColor = a.getColor(R.styleable.WarningLayout_warningButtonTextColor, Color.WHITE);
 
-        mWarningImageResource = a.getResourceId(R.styleable.WarningLayout_warningImage,0);
+        mWarningImageResource = a.getResourceId(R.styleable.WarningLayout_warningImage, 0);
 
-        LayoutInflater.from(context).inflate(R.layout.layout_warning,this);
+        LayoutInflater.from(context).inflate(R.layout.layout_warning, this);
 
         warningTextView = findViewById(R.id.tv_warning);
         warningButton = findViewById(R.id.btn_warning);
@@ -89,11 +90,11 @@ public class WarningLayout extends LinearLayout {
 
         warningTextView.setText(mWarningText);
         warningTextView.setTextColor(mWarningTextColor);
-        warningTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,mWarningTextSize);
+        warningTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mWarningTextSize);
 
 
         warningButton.setText(mWarningButtonText);
-        warningButton.setTextSize(TypedValue.COMPLEX_UNIT_PX,mWarningButtonTextSize);
+        warningButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, mWarningButtonTextSize);
         warningButton.setBackgroundColor(mWarningButtonBackgroundColor);
         warningButton.setTextColor(mWarningButtonTextColor);
 
@@ -101,9 +102,9 @@ public class WarningLayout extends LinearLayout {
 //        warningButton.setOnClickListener(this);
     }
 
-    public void setmWarningText(String mWarningText){
+    public void setmWarningText(String mWarningText) {
         this.mWarningText = mWarningText;
-        if (warningTextView != null){
+        if (warningTextView != null) {
             warningTextView.setText(mWarningText);
         }
     }
@@ -118,8 +119,13 @@ public class WarningLayout extends LinearLayout {
 
     public void setmWarningTextColor(int mWarningTextColor) {
         this.mWarningTextColor = mWarningTextColor;
-        if (warningTextView != null){
-            warningTextView.setTextColor(mWarningTextColor);
+        if (warningTextView != null) {
+            if (mWarningTextColor > 0) {
+                int color = ContextCompat.getColor(getContext(), mWarningTextColor);
+                warningTextView.setTextColor(color);
+            } else {
+                warningTextView.setTextColor(mWarningTextColor);
+            }
         }
     }
 
@@ -129,7 +135,7 @@ public class WarningLayout extends LinearLayout {
 
     public void setmWarningTextSize(float mWarningTextSize) {
         this.mWarningTextSize = mWarningTextSize;
-        if (warningTextView != null){
+        if (warningTextView != null) {
             warningTextView.setTextSize(mWarningTextSize);
         }
     }
@@ -140,7 +146,7 @@ public class WarningLayout extends LinearLayout {
 
     public void setmWarningButtonText(String mWarningButtonText) {
         this.mWarningButtonText = mWarningButtonText;
-        if (warningButton != null){
+        if (warningButton != null) {
             warningButton.setText(mWarningButtonText);
         }
     }
@@ -151,8 +157,14 @@ public class WarningLayout extends LinearLayout {
 
     public void setmWarningButtonTextColor(int mWarningButtonTextColor) {
         this.mWarningButtonTextColor = mWarningButtonTextColor;
-        if (warningButton != null){
-            warningButton.setTextColor(mWarningButtonTextColor);
+        if (warningButton != null) {
+            if (mWarningButtonTextColor > 0) {
+                int color = ContextCompat.getColor(getContext(), mWarningButtonTextColor);
+                warningButton.setTextColor(color);
+            } else {
+                warningButton.setTextColor(mWarningButtonTextColor);
+
+            }
         }
     }
 
@@ -162,8 +174,14 @@ public class WarningLayout extends LinearLayout {
 
     public void setmWarningButtonBackgroundColor(int mWarningButtonBackgroundColor) {
         this.mWarningButtonBackgroundColor = mWarningButtonBackgroundColor;
-        if (warningButton != null){
-            warningButton.setBackgroundColor(mWarningButtonBackgroundColor);
+        if (warningButton != null) {
+
+            if (mWarningButtonBackgroundColor > 0) {
+                int color = ContextCompat.getColor(getContext(), mWarningButtonBackgroundColor);
+                warningButton.setBackgroundColor(color);
+            } else {
+                warningButton.setBackgroundColor(mWarningButtonBackgroundColor);
+            }
         }
     }
 
@@ -173,7 +191,7 @@ public class WarningLayout extends LinearLayout {
 
     public void setmWarningButtonTextSize(float mWarningButtonTextSize) {
         this.mWarningButtonTextSize = mWarningButtonTextSize;
-        if (warningButton != null){
+        if (warningButton != null) {
             warningButton.setTextSize(mWarningButtonTextSize);
         }
     }
@@ -184,12 +202,12 @@ public class WarningLayout extends LinearLayout {
 
     public void setmWarningImageResource(int mWarningImageResource) {
         this.mWarningImageResource = mWarningImageResource;
-        if (warningImageView != null){
+        if (warningImageView != null) {
             warningImageView.setImageResource(mWarningImageResource);
         }
     }
 
-    public void setOnWarningButtonClickListener(View.OnClickListener onClickListener){
+    public void setOnWarningButtonClickListener(View.OnClickListener onClickListener) {
         warningButton.setOnClickListener(onClickListener);
     }
 }
