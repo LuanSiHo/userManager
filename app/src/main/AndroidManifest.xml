@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity">
-
         </activity>
         <activity android:name=".HomeActivity">
         </activity>
@@ -25,6 +24,9 @@
         <activity android:name=".CompanyWebViewActivity">
         </activity>
         <activity android:name=".TutorialActivity">
+
+        </activity>
+        <activity android:name=".ShowDialogActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

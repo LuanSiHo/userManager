@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hosiluan.usermanager.ShowDialogActivity">
+
+    <Button
+        android:id="@+id/btn_show_progress_bar"
+        android:text="processing dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"/>
+
+    <Button
+        android:id="@+id/btn_show_single_dialog"
+        android:text="single dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_show_two_option_dialog"
+        android:text="two option dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_show_slide_up_from_bottom_dialog"
+        android:text="slide up from bottom dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.hosiluan.usermanager.WarningLayout
+        app:warningImage="@drawable/jvit"
+        android:id="@+id/warning_layout"
+        app:warningTextColor="@color/colorRed"
+        app:warningTextSize="19sp"
+        app:warningButtonTextSize="12sp"
+        app:warningButtonTextColor="@color/colorWhite"
+        app:warningButtonText="Add new"
+        app:warningButtonBackgroundColor="@color/colorRed"
+        app:mWarningText="You don't have any user"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.hosiluan.usermanager.WarningLayout>
+</LinearLayout>

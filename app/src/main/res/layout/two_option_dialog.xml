@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="16dp">
+
+    <TextView
+        android:textColor="@color/colorBlack"
+        android:textSize="19sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Discard this file?"/>
+
+    <LinearLayout
+        android:gravity="right"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancel_two_option_dialog"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:text="Cancel"/>
+
+        <Button
+            android:id="@+id/btn_discard_two_option_dialog"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="discard"/>
+    </LinearLayout>
+</LinearLayout>

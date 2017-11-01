@@ -19,6 +19,7 @@ public class TutorialActivity extends AppCompatActivity {
     private ViewPager pager;
     private TabLayout tabLayout;
     private TextView skipTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WarningLayout">
+        <attr name="mWarningText" format="string"/>
+        <attr name="warningTextColor" format="color"/>
+        <attr name="warningTextSize" format="dimension"/>
+        <attr name="warningButtonText" format="string"/>
+        <attr name="warningButtonTextColor" format="color"/>
+        <attr name="warningButtonBackgroundColor" format="color"/>
+        <attr name="warningButtonTextSize" format="dimension"/>
+        <attr name="warningImage" format="integer"/>
+    </declare-styleable>
+</resources>
