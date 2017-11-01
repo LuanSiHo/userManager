@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -43,10 +44,11 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         setView();
         setEvent();
-        String username = getUserInfo();
+       String username = getUserInfo();
         if (username != null) {
             welcomeTextView.setText("Welcome " + username);
         }
+
 
     }
 
@@ -54,6 +56,7 @@ public class HomeActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         recyclerViewSlideMenuAdapter.setDefaultSelectedPosition();
+        this.overridePendingTransition(R.anim.anim_slideup, R.anim.anim_slidedown);
     }
 
     private void setView() {
