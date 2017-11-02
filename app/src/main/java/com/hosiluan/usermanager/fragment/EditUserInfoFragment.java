@@ -27,8 +27,8 @@ public class EditUserInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_user_info_toolbar, container, false);
-        saveUserInfoTextView = view.findViewById(R.id.tv_save_user_info);
-        backImageButton = view.findViewById(R.id.img_btn_edit_user_info_back);
+        saveUserInfoTextView = (TextView) view.findViewById(R.id.tv_save_user_info);
+        backImageButton = (ImageButton) view.findViewById(R.id.img_btn_edit_user_info_back);
         return view;
     }
 

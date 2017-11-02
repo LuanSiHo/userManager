@@ -17,8 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chauthai.swipereveallayout.SwipeRevealLayout;
-import com.chauthai.swipereveallayout.ViewBinderHelper;
+
 
 import java.util.ArrayList;
 
@@ -72,8 +71,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
-            usernameTextView = itemView.findViewById(R.id.tv_user_name);
-            viewForeground = itemView.findViewById(R.id.view_foreground);
+            usernameTextView = (TextView) itemView.findViewById(R.id.tv_user_name);
+            viewForeground = (RelativeLayout) itemView.findViewById(R.id.view_foreground);
 
         }
     }

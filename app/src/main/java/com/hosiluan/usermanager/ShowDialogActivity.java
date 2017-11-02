@@ -50,7 +50,6 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
 
         warningLayout.setmWarningButtonBackgroundColor(R.color.colorRed);
 
-
         warningLayout.setmWarningButtonText("Click me");
         warningLayout.setmWarningButtonTextColor(R.color.colorAccent);
         warningLayout.setmWarningButtonTextSize(16);
@@ -70,7 +69,7 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
                 View view1 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.processing_dialog, null);
 
                 builder.setView(view1);
-                progressBar = view1.findViewById(R.id.progressbar);
+                progressBar = (ProgressBar) view1.findViewById(R.id.progressbar);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
 
@@ -85,7 +84,7 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
                 AlertDialog.Builder builder = new AlertDialog.Builder(ShowDialogActivity.this);
                 View view1 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.single_dialog, null);
                 builder.setView(view1);
-                Button button = view1.findViewById(R.id.btn_dissmiss_single_dialog);
+                Button button = (Button) view1.findViewById(R.id.btn_dissmiss_single_dialog);
                 final AlertDialog alertDialog = builder.create();
                 alertDialog.show();
 
@@ -109,7 +108,7 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
                 final AlertDialog alertDialog = builder.create();
                 alertDialog.show();
 
-                Button cancelButton = view1.findViewById(R.id.btn_cancel_two_option_dialog);
+                Button cancelButton = (Button) view1.findViewById(R.id.btn_cancel_two_option_dialog);
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -118,7 +117,7 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
                     }
                 });
 
-                Button discardButton = view1.findViewById(R.id.btn_discard_two_option_dialog);
+                Button discardButton = (Button) view1.findViewById(R.id.btn_discard_two_option_dialog);
                 discardButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -143,7 +142,7 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
 //                alertDialog.getWindow().setGravity(Gravity.BOTTOM);
                 alertDialog.show();
 
-                Button cancelButton = view1.findViewById(R.id.btn_cancel_two_option_dialog);
+                Button cancelButton = (Button) view1.findViewById(R.id.btn_cancel_two_option_dialog);
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -152,7 +151,7 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
                     }
                 });
 
-                Button discardButton = view1.findViewById(R.id.btn_discard_two_option_dialog);
+                Button discardButton = (Button) view1.findViewById(R.id.btn_discard_two_option_dialog);
                 discardButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

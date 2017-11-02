@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:padding="12dp"
+              android:gravity="center_horizontal"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:background="@drawable/ic_google_plus"
+            android:id="@+id/custom_google_login_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <TextView
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:gravity="center_horizontal"
+            android:text="Google +"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:background="@drawable/ic_twitter"
+            android:id="@+id/custom_twitter_login_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <TextView
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:text="Twitter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:background="@drawable/ic_facebook"
+            android:id="@+id/custom_fb_login_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <TextView
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:text="Facebook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

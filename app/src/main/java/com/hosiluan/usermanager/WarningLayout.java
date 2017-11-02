@@ -83,9 +83,9 @@ public class WarningLayout extends LinearLayout {
 
         LayoutInflater.from(context).inflate(R.layout.layout_warning, this);
 
-        warningTextView = findViewById(R.id.tv_warning);
-        warningButton = findViewById(R.id.btn_warning);
-        warningImageView = findViewById(R.id.img_warning);
+        warningTextView = (TextView) findViewById(R.id.tv_warning);
+        warningButton = (Button) findViewById(R.id.btn_warning);
+        warningImageView = (ImageView) findViewById(R.id.img_warning);
 
 
         warningTextView.setText(mWarningText);

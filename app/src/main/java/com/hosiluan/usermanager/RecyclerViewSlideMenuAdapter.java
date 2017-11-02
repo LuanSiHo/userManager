@@ -77,8 +77,8 @@ public class RecyclerViewSlideMenuAdapter extends RecyclerView.Adapter<RecyclerV
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            menuItemImageView = itemView.findViewById(R.id.img_menu_item);
-            menuItemTextView = itemView.findViewById(R.id.tv_menu_item);
+            menuItemImageView = (ImageView) itemView.findViewById(R.id.img_menu_item);
+            menuItemTextView = (TextView) itemView.findViewById(R.id.tv_menu_item);
         }
     }
 

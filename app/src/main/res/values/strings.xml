@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">User Manager</string>
+    <string name="facebook_app_id">706041109594544</string>
+    <string name="fb_login_protocol_scheme">fb706041109594544</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">HwGcFcYD270XoAuHL8D8pg0ry</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">a7YPAcOXbVmTdGrVwxbeh1cg3ILs1mm4qmU5p2WH3Ruz3wpGnj</string>
+
+
     <integer-array name="menu_image">
         <item>@drawable/ic_home</item>
         <item>@drawable/ic_list_user</item>

@@ -32,8 +32,8 @@ public class UserInfoToolbarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_info_toolbar,container,false);
-        editUserInfoTextView = view.findViewById(R.id.tv_edit_user_info);
-        backImageButton = view.findViewById(R.id.img_btn_user_info_back);
+        editUserInfoTextView = (TextView) view.findViewById(R.id.tv_edit_user_info);
+        backImageButton = (ImageButton) view.findViewById(R.id.img_btn_user_info_back);
         return view;
     }
 

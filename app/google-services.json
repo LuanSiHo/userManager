@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "676001570877",
+    "project_id": "usermanager-184803"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676001570877:android:069d2989981b1d8c",
+        "android_client_info": {
+          "package_name": "com.hosiluan.usermanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676001570877-g62q84tn1b7ua1bnlrgrh6fo2cjnm7gf.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "676001570877-l946d5ppiqqpe6rkng5f49a9iq02qk87.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hosiluan.usermanager",
+            "certificate_hash": "dc2e375adbb4d93de3be190fabc750492d39f2ef"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUdq3kon9acwFq1ZKBzR5w5Pt0d24asw0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
