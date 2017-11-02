@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -45,6 +46,7 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
@@ -53,6 +55,8 @@ public class SocialNetworkActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final int RC_SIGN_IN = 001;
+
+    private TextView userInfoTextView;
 
     private CallbackManager callbackManager;
 
@@ -106,6 +110,7 @@ public class SocialNetworkActivity extends AppCompatActivity
 
         loginButton = (Button) findViewById(R.id.btn_login);
         shareButton = (Button) findViewById(R.id.btn_share);
+        userInfoTextView = (TextView) findViewById(R.id.tv_user_info);
     }
 
     private void setEvent() {
@@ -172,11 +177,15 @@ public class SocialNetworkActivity extends AppCompatActivity
                         twitterAuthClient.authorize(SocialNetworkActivity.this, new Callback<TwitterSession>() {
                             @Override
                             public void success(Result<TwitterSession> result) {
-                                TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
+                                TwitterSession session = TwitterCore.getInstance()
+                                        .getSessionManager()
+                                        .getActiveSession();
+
                                 TwitterAuthToken authToken = session.getAuthToken();
                                 String token = authToken.token;
                                 String secret = authToken.secret;
                                 Log.d("Luan", session.getUserId() + " " + session.getUserName());
+                                userInfoTextView.setText(session.getUserName());
                             }
 
                             @Override
@@ -208,7 +217,8 @@ public class SocialNetworkActivity extends AppCompatActivity
                 shareToFaceBookButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(SocialNetworkActivity.this, "share to fb", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SocialNetworkActivity.this, "share to fb",
+                                Toast.LENGTH_SHORT).show();
                         ShareLinkContent content = new ShareLinkContent.Builder()
                                 .setContentUrl(Uri.parse("https://developers.facebook.com"))
                                 .setContentDescription("some description")
@@ -223,7 +233,8 @@ public class SocialNetworkActivity extends AppCompatActivity
                 shareToGoogleButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(SocialNetworkActivity.this, "share to google", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SocialNetworkActivity.this, "share to google",
+                                Toast.LENGTH_SHORT).show();
                         Intent shareIntent = new PlusShare.Builder(SocialNetworkActivity.this)
                                 .setType("text/plain")
                                 .setText("Welcome to the Google+ platform.")
@@ -258,16 +269,19 @@ public class SocialNetworkActivity extends AppCompatActivity
         //callback for facebook
         callbackManager.onActivityResult(requestCode, resultCode, data);
 
-
         // callback for google
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
 
-            GoogleSignInAccount googleSignInAccount = result.getSignInAccount();
-            Log.d("Luan", googleSignInAccount.getDisplayName() + " / " + googleSignInAccount.getEmail());
-        }
+            Log.d("Luan","i;m here");
 
+            if (result.isSuccess()){
+                GoogleSignInAccount acct = result.getSignInAccount();
+                Log.d("Luan", acct.getDisplayName() + " / " + acct.getEmail());
+                userInfoTextView.setText(acct.getDisplayName());
+            }
+        }
 
         twitterAuthClient.onActivityResult(requestCode, resultCode, data);
     }
@@ -278,6 +292,13 @@ public class SocialNetworkActivity extends AppCompatActivity
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
                         Log.d("Luan", response.getJSONObject().toString());
+                        try {
+                            String userName = response.getJSONObject().getString("name");
+                            Log.d("Luan",userName);
+                            userInfoTextView.setText(userName);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
         graphRequest.executeAsync();

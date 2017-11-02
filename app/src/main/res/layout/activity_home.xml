@@ -148,6 +148,25 @@
             </LinearLayout>
 
             <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_weight="1"
+                    android:text="dialog activity"
+                    android:id="@+id/btn_show_dialog_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+                <Button
+                    android:layout_weight="1"
+                    android:text="network activity"
+                    android:id="@+id/btn_show_social_network_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
@@ -163,7 +182,6 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="19sp"/>
             </LinearLayout>
-
         </LinearLayout>
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

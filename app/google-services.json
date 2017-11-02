@@ -1,7 +1,9 @@
 {
   "project_info": {
     "project_number": "676001570877",
-    "project_id": "usermanager-184803"
+    "firebase_url": "https://usermanager-184803.firebaseio.com",
+    "project_id": "usermanager-184803",
+    "storage_bucket": "usermanager-184803.appspot.com"
   },
   "client": [
     {
@@ -12,6 +14,10 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "676001570877-l5s4jc0jeot3p5d5uaa71b9g9ptcf35d.apps.googleusercontent.com",
+          "client_type": 3
+        },
         {
           "client_id": "676001570877-g62q84tn1b7ua1bnlrgrh6fo2cjnm7gf.apps.googleusercontent.com",
           "client_type": 3
@@ -35,11 +41,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676001570877-l5s4jc0jeot3p5d5uaa71b9g9ptcf35d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }
