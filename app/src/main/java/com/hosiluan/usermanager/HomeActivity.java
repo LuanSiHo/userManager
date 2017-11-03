@@ -29,7 +29,8 @@ public class HomeActivity extends AppCompatActivity
         implements RecyclerViewSlideMenuAdapter.SlideMenuAdapterListener {
 
     private TextView welcomeTextView;
-    private Button logoutButton, addUserButton, viewListUserButton, logoutButtonSlideMenu;
+    private Button logoutButton, addUserButton, viewListUserButton, logoutButtonSlideMenu,
+    showDialogActivityButton,showNetWorkActivityButton;
     private ImageButton openSlideMenuImageButton;
     private RecyclerView slideMenuRecyclerView;
     private RecyclerViewSlideMenuAdapter recyclerViewSlideMenuAdapter;
@@ -47,8 +48,6 @@ public class HomeActivity extends AppCompatActivity
         if (username != null) {
             welcomeTextView.setText("Welcome " + username);
         }
-
-
     }
 
     @Override
@@ -59,6 +58,9 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void setView() {
+
+        showDialogActivityButton = (Button) findViewById(R.id.btn_show_dialog_activity);
+        showNetWorkActivityButton = (Button) findViewById(R.id.btn_show_social_network_activity);
 
         welcomeTextView = (TextView) findViewById(R.id.tv_welcome);
         logoutButton = (Button) findViewById(R.id.btn_logout);
@@ -131,6 +133,21 @@ public class HomeActivity extends AppCompatActivity
                 editor.apply();
 
                 finish();
+            }
+        });
+
+
+        showDialogActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,ShowDialogActivity.class));
+            }
+        });
+
+        showNetWorkActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,SocialNetworkActivity.class));
             }
         });
 

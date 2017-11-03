@@ -35,7 +35,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_about)
                 .setContentTitle("Message")
-                .setContentText(remoteMessage.getNotification().getBody())
+                .setContentText(remoteMessage.getNotification().getBody() + " from: "
+                        + remoteMessage.getFrom())
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent);
 
@@ -44,5 +45,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(1410, notificationBuilder.build());
+
+
     }
 }
