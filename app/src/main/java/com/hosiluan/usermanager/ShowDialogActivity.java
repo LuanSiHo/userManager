@@ -1,11 +1,13 @@
 package com.hosiluan.usermanager;
 
 import android.graphics.Color;
+import android.os.PersistableBundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,12 +15,18 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-public class ShowDialogActivity extends AppCompatActivity implements GestureDetector.OnGestureListener{
+import static com.hosiluan.usermanager.common.Common.DIALOG_NUMBER;
+import static com.hosiluan.usermanager.common.Common.PROGRESS_NUM;
+
+public class ShowDialogActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
 
     private Button showProgressbarButton, showSingleDialogButton, showTwoOptionDialog, showSlideUpFromBottomButton;
     private ProgressBar progressBar;
     GestureDetector detector;
+
+    private static int dialogNum = 0;
+    private static int progressNum = 0;
 
     private WarningLayout warningLayout;
 
@@ -32,7 +40,7 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
 
     private void setView() {
 
-        detector=new GestureDetector(this);
+        detector = new GestureDetector(this);
 
         showProgressbarButton = (Button) findViewById(R.id.btn_show_progress_bar);
         showSingleDialogButton = (Button) findViewById(R.id.btn_show_single_dialog);
@@ -64,36 +72,14 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
         showProgressbarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(ShowDialogActivity.this);
-                View view1 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.processing_dialog, null);
-
-                builder.setView(view1);
-                progressBar = (ProgressBar) view1.findViewById(R.id.progressbar);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-
-                progressBar.setMax(100);
-                setProgressValue(1);
+                createProgressDialog();
             }
         });
 
         showSingleDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ShowDialogActivity.this);
-                View view1 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.single_dialog, null);
-                builder.setView(view1);
-                Button button = (Button) view1.findViewById(R.id.btn_dissmiss_single_dialog);
-                final AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        alertDialog.dismiss();
-                    }
-                });
+                createSingleDialog();
             }
         });
 
@@ -101,30 +87,7 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
         showTwoOptionDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ShowDialogActivity.this);
-                View view1 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.two_option_dialog, null);
-                builder.setView(view1);
-
-                final AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-
-                Button cancelButton = (Button) view1.findViewById(R.id.btn_cancel_two_option_dialog);
-                cancelButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(ShowDialogActivity.this, "cancel", Toast.LENGTH_SHORT).show();
-                        alertDialog.dismiss();
-                    }
-                });
-
-                Button discardButton = (Button) view1.findViewById(R.id.btn_discard_two_option_dialog);
-                discardButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(ShowDialogActivity.this, "discard", Toast.LENGTH_SHORT).show();
-                        alertDialog.dismiss();
-                    }
-                });
+                createTwoOptionDialog();
             }
         });
 
@@ -132,39 +95,104 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(ShowDialogActivity.this, "ahihi", Toast.LENGTH_SHORT).show();
-                AlertDialog.Builder builder = new AlertDialog.Builder(ShowDialogActivity.this);
-                View view1 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.two_option_dialog, null);
-                builder.setView(view1);
-
-                final AlertDialog alertDialog = builder.create();
-                alertDialog.getWindow().setWindowAnimations(R.style.DialogSlideAnim);
-//                alertDialog.getWindow().setGravity(Gravity.BOTTOM);
-                alertDialog.show();
-
-                Button cancelButton = (Button) view1.findViewById(R.id.btn_cancel_two_option_dialog);
-                cancelButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(ShowDialogActivity.this, "cancel", Toast.LENGTH_SHORT).show();
-                        alertDialog.dismiss();
-                    }
-                });
-
-                Button discardButton = (Button) view1.findViewById(R.id.btn_discard_two_option_dialog);
-                discardButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(ShowDialogActivity.this, "discard", Toast.LENGTH_SHORT).show();
-                        alertDialog.dismiss();
-                    }
-                });
+                createSlideUpDialog();
             }
         });
 
     }
 
-    private void setProgressValue(final int progress) {
+    private void createSingleDialog() {
+        dialogNum = 2;
+        AlertDialog.Builder builder = new AlertDialog.Builder(ShowDialogActivity.this);
+        View view1 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.single_dialog, null);
+        builder.setView(view1);
+        Button button = (Button) view1.findViewById(R.id.btn_dissmiss_single_dialog);
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+    }
+
+    private void createSlideUpDialog() {
+
+        dialogNum = 4;
+        Toast.makeText(ShowDialogActivity.this, "ahihi", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(ShowDialogActivity.this);
+        View view1 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.two_option_dialog, null);
+        builder.setView(view1);
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setWindowAnimations(R.style.DialogSlideAnim);
+        alertDialog.getWindow().setGravity(Gravity.BOTTOM);
+        alertDialog.show();
+
+        Button cancelButton = (Button) view1.findViewById(R.id.btn_cancel_two_option_dialog);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ShowDialogActivity.this, "cancel", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }
+        });
+
+        Button discardButton = (Button) view1.findViewById(R.id.btn_discard_two_option_dialog);
+        discardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ShowDialogActivity.this, "discard", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }
+        });
+    }
+
+    private void createTwoOptionDialog() {
+        dialogNum = 3;
+        AlertDialog.Builder builder = new AlertDialog.Builder(ShowDialogActivity.this);
+        View view1 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.two_option_dialog, null);
+        builder.setView(view1);
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button cancelButton = (Button) view1.findViewById(R.id.btn_cancel_two_option_dialog);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ShowDialogActivity.this, "cancel", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }
+        });
+
+        Button discardButton = (Button) view1.findViewById(R.id.btn_discard_two_option_dialog);
+        discardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ShowDialogActivity.this, "discard", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }
+        });
+    }
+
+    private void createProgressDialog() {
+
+        dialogNum = 1;
+        AlertDialog.Builder builder = new AlertDialog.Builder(ShowDialogActivity.this);
+        View view1 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.processing_dialog, null);
+
+        builder.setView(view1);
+        progressBar = (ProgressBar) view1.findViewById(R.id.progressbar);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        progressBar.setMax(100);
+        setProgressValue(progressBar, 1);
+    }
+
+    private void setProgressValue(final ProgressBar progressBar, final int progress) {
 
         // set the progress
         progressBar.setProgress(progress);
@@ -178,7 +206,7 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                setProgressValue(progress + 1);
+                setProgressValue(progressBar, progress + 1);
             }
         });
         thread.start();
@@ -224,7 +252,6 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
     }
 
 
-
     @Override
     public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
         Toast.makeText(this, "Fling", Toast.LENGTH_SHORT).show();
@@ -246,8 +273,6 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
     }
 
 
-
-
     private int getSlope(float x1, float y1, float x2, float y2) {
         Double angle = Math.toDegrees(Math.atan2(y1 - y2, x2 - x1));
         if (angle > 45 && angle <= 135)
@@ -265,4 +290,37 @@ public class ShowDialogActivity extends AppCompatActivity implements GestureDete
         return 0;
     }
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(DIALOG_NUMBER, dialogNum);
+        if (progressBar != null) {
+            outState.putInt(PROGRESS_NUM, progressBar.getProgress());
+        }
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        switch (savedInstanceState.getInt(DIALOG_NUMBER)) {
+            case 1:
+                int progress = savedInstanceState.getInt(PROGRESS_NUM);
+                Toast.makeText(this, progress + " ", Toast.LENGTH_SHORT).show();
+                createProgressDialog();
+//                setProgressValue(progressBar,progress);
+//                progressBar.setProgress(progress);
+                break;
+            case 2:
+                createSingleDialog();
+                break;
+            case 3:
+                createTwoOptionDialog();
+                break;
+            case 4:
+                createSlideUpDialog();
+                break;
+        }
+    }
 }

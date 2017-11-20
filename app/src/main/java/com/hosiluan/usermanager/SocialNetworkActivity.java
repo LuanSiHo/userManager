@@ -51,8 +51,7 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
-public class SocialNetworkActivity extends AppCompatActivity
-        implements GoogleApiClient.OnConnectionFailedListener {
+public class SocialNetworkActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final int RC_SIGN_IN = 001;
 
@@ -60,7 +59,7 @@ public class SocialNetworkActivity extends AppCompatActivity
 
     private CallbackManager callbackManager;
 
-    private Button loginButton,shareButton;
+    private Button loginButton, shareButton;
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -94,16 +93,11 @@ public class SocialNetworkActivity extends AppCompatActivity
     private void configureForGoogleLogin() {
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
 
         // Build a GoogleApiClient with access to the Google Sign-In API and the
         // options specified by gso.
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
     }
 
     private void setView() {
@@ -119,8 +113,7 @@ public class SocialNetworkActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SocialNetworkActivity.this);
-                View view1 = LayoutInflater.from(getApplicationContext())
-                        .inflate(R.layout.custom_social_network_dialog, null);
+                View view1 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_social_network_dialog, null);
                 builder.setView(view1);
 
                 final AlertDialog alertDialog = builder.create();
@@ -133,11 +126,9 @@ public class SocialNetworkActivity extends AppCompatActivity
                 loginWithFBButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        LoginManager.getInstance().logInWithReadPermissions(SocialNetworkActivity.this,
-                                Arrays.asList("public_profile"));
+                        LoginManager.getInstance().logInWithReadPermissions(SocialNetworkActivity.this, Arrays.asList("public_profile"));
 
-                        LoginManager.getInstance().registerCallback(callbackManager,
-                                new FacebookCallback<LoginResult>() {
+                        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                             @Override
                             public void onSuccess(LoginResult loginResult) {
                                 Log.d("Luan", "success custom");
@@ -154,6 +145,8 @@ public class SocialNetworkActivity extends AppCompatActivity
 
                             }
                         });
+                        alertDialog.dismiss();
+                        return;
                     }
                 });
 
@@ -164,6 +157,8 @@ public class SocialNetworkActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         signInByGoogleAccount();
+                        alertDialog.dismiss();
+                        return;
                     }
                 });
 
@@ -177,9 +172,7 @@ public class SocialNetworkActivity extends AppCompatActivity
                         twitterAuthClient.authorize(SocialNetworkActivity.this, new Callback<TwitterSession>() {
                             @Override
                             public void success(Result<TwitterSession> result) {
-                                TwitterSession session = TwitterCore.getInstance()
-                                        .getSessionManager()
-                                        .getActiveSession();
+                                TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
 
                                 TwitterAuthToken authToken = session.getAuthToken();
                                 String token = authToken.token;
@@ -193,7 +186,8 @@ public class SocialNetworkActivity extends AppCompatActivity
 
                             }
                         });
-
+                        alertDialog.dismiss();
+                        return;
                     }
                 });
 
@@ -203,13 +197,12 @@ public class SocialNetworkActivity extends AppCompatActivity
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder  = new AlertDialog.Builder(SocialNetworkActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(SocialNetworkActivity.this);
 
-                View view1 = LayoutInflater.from(getApplicationContext())
-                        .inflate(R.layout.custom_social_network_dialog,null);
+                View view1 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_social_network_dialog, null);
 
                 builder.setView(view1);
-                AlertDialog alertDialog = builder.create();
+                final AlertDialog alertDialog = builder.create();
                 alertDialog.show();
                 alertDialog.getWindow().setGravity(Gravity.BOTTOM);
 
@@ -217,15 +210,12 @@ public class SocialNetworkActivity extends AppCompatActivity
                 shareToFaceBookButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(SocialNetworkActivity.this, "share to fb",
-                                Toast.LENGTH_SHORT).show();
-                        ShareLinkContent content = new ShareLinkContent.Builder()
-                                .setContentUrl(Uri.parse("https://developers.facebook.com"))
-                                .setContentDescription("some description")
-                                .build();
+                        Toast.makeText(SocialNetworkActivity.this, "share to fb", Toast.LENGTH_SHORT).show();
+                        ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).setContentDescription("some description").build();
                         ShareDialog shareDialog = new ShareDialog(SocialNetworkActivity.this);
                         shareDialog.show(content, ShareDialog.Mode.AUTOMATIC);
-
+                        alertDialog.dismiss();
+                        return;
                     }
                 });
 
@@ -233,15 +223,12 @@ public class SocialNetworkActivity extends AppCompatActivity
                 shareToGoogleButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(SocialNetworkActivity.this, "share to google",
-                                Toast.LENGTH_SHORT).show();
-                        Intent shareIntent = new PlusShare.Builder(SocialNetworkActivity.this)
-                                .setType("text/plain")
-                                .setText("Welcome to the Google+ platform.")
-                                .setContentUrl(Uri.parse("https://developers.google.com/+/"))
-                                .getIntent();
+                        Toast.makeText(SocialNetworkActivity.this, "share to google", Toast.LENGTH_SHORT).show();
+                        Intent shareIntent = new PlusShare.Builder(SocialNetworkActivity.this).setType("text/plain").setText("Welcome to the Google+ platform.").setContentUrl(Uri.parse("https://developers.google.com/+/")).getIntent();
 
                         startActivityForResult(shareIntent, 0);
+                        alertDialog.dismiss();
+                        return;
 
                     }
                 });
@@ -252,9 +239,10 @@ public class SocialNetworkActivity extends AppCompatActivity
                     public void onClick(View v) {
                         Toast.makeText(SocialNetworkActivity.this, "share to twitter", Toast.LENGTH_SHORT).show();
 
-                        TweetComposer.Builder builder = new TweetComposer.Builder(SocialNetworkActivity.this)
-                                .text("just setting up my Twitter Kit.");
+                        TweetComposer.Builder builder = new TweetComposer.Builder(SocialNetworkActivity.this).text("just setting up my Twitter Kit.");
                         builder.show();
+                        alertDialog.dismiss();
+                        return;
                     }
                 });
 
@@ -274,9 +262,9 @@ public class SocialNetworkActivity extends AppCompatActivity
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
 
-            Log.d("Luan","i;m here");
+            Log.d("Luan", "i;m here");
 
-            if (result.isSuccess()){
+            if (result.isSuccess()) {
                 GoogleSignInAccount acct = result.getSignInAccount();
                 Log.d("Luan", acct.getDisplayName() + " / " + acct.getEmail());
                 userInfoTextView.setText(acct.getDisplayName());
@@ -287,20 +275,19 @@ public class SocialNetworkActivity extends AppCompatActivity
     }
 
     private void setFacebookLoginResult() {
-        GraphRequest graphRequest = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(),
-                new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
-                        Log.d("Luan", response.getJSONObject().toString());
-                        try {
-                            String userName = response.getJSONObject().getString("name");
-                            Log.d("Luan",userName);
-                            userInfoTextView.setText(userName);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+        GraphRequest graphRequest = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject object, GraphResponse response) {
+                Log.d("Luan", response.getJSONObject().toString());
+                try {
+                    String userName = response.getJSONObject().getString("name");
+                    Log.d("Luan", userName);
+                    userInfoTextView.setText(userName);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         graphRequest.executeAsync();
     }
 
@@ -314,7 +301,6 @@ public class SocialNetworkActivity extends AppCompatActivity
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.d("Luan", connectionResult + " fail");
     }
-
 
     private void signInByGoogleAccount() {
 
