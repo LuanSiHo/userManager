@@ -1,4 +1,4 @@
-package com.hosiluan.usermanager;
+package com.hosiluan.usermanager.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.hosiluan.usermanager.R;
 
 /**
  * Created by User on 11/1/2017.

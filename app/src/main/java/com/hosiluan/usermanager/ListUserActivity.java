@@ -1,34 +1,26 @@
 package com.hosiluan.usermanager;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.os.PersistableBundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hosiluan.usermanager.fragment.UserInfoToolbarFragment;
+import com.hosiluan.usermanager.adapter.RecyclerViewAdapter;
+import com.hosiluan.usermanager.model.User;
 
 import java.util.ArrayList;
-
-import static android.support.v7.widget.helper.ItemTouchHelper.Callback.getDefaultUIUtil;
 
 public class ListUserActivity extends AppCompatActivity
     implements RecyclerViewAdapter.AdapterListener {

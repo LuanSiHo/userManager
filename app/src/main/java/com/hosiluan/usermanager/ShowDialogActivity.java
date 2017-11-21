@@ -1,7 +1,5 @@
 package com.hosiluan.usermanager;
 
-import android.graphics.Color;
-import android.os.PersistableBundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.hosiluan.usermanager.custom.WarningLayout;
 
 import static com.hosiluan.usermanager.common.Common.DIALOG_NUMBER;
 import static com.hosiluan.usermanager.common.Common.PROGRESS_NUM;

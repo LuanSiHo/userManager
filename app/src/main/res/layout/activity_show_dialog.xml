@@ -55,7 +55,7 @@
         android:layout_weight="5"
         android:gravity="center">
 
-        <com.hosiluan.usermanager.WarningLayout
+        <com.hosiluan.usermanager.custom.WarningLayout
             android:id="@+id/warning_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             app:warningImage="@drawable/jvit"
             app:warningTextColor="@color/colorRed"
             app:warningTextSize="19sp">
-        </com.hosiluan.usermanager.WarningLayout>
+        </com.hosiluan.usermanager.custom.WarningLayout>
     </LinearLayout>
 
 </LinearLayout>

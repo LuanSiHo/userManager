@@ -1,4 +1,4 @@
-package com.hosiluan.usermanager;
+package com.hosiluan.usermanager.adapter;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,7 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.hosiluan.usermanager.R;
 
 import java.util.ArrayList;
 

@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hosiluan.usermanager.adapter.PagerAdapter;
+
 public class TutorialActivity extends AppCompatActivity {
 
     private static final String FIRST_LAUNCH_PREF = "first_launch_pref";

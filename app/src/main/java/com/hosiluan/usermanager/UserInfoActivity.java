@@ -1,8 +1,6 @@
 package com.hosiluan.usermanager;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +8,7 @@ import android.widget.EditText;
 
 import com.hosiluan.usermanager.fragment.EditUserInfoFragment;
 import com.hosiluan.usermanager.fragment.UserInfoToolbarFragment;
+import com.hosiluan.usermanager.model.User;
 
 import static com.hosiluan.usermanager.ListUserActivity.BUNDLE_TO_USER_INFO;
 import static com.hosiluan.usermanager.ListUserActivity.OBJECT_TO_USER_INFO;

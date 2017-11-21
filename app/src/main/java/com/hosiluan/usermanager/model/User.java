@@ -1,4 +1,4 @@
-package com.hosiluan.usermanager;
+package com.hosiluan.usermanager.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.hosiluan.usermanager.model.User;
+
 import java.util.Calendar;
 
 public class NewUserActivity extends AppCompatActivity {
