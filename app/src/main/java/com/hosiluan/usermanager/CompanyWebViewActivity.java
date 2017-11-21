@@ -31,7 +31,6 @@ public class CompanyWebViewActivity extends AppCompatActivity {
     }
     private void setView(){
         backImageButton = (ImageButton) findViewById(R.id.img_btn_company_webview_back);
-
     }
 
     private void setEvent(){

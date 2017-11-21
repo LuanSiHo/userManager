@@ -27,4 +27,5 @@
         android:id="@+id/tv_user_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
 </LinearLayout>

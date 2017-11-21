@@ -99,6 +99,7 @@ public class WarningLayout extends LinearLayout {
         warningButton.setTextColor(mWarningButtonTextColor);
 
         warningImageView.setImageResource(mWarningImageResource);
+
 //        warningButton.setOnClickListener(this);
     }
 

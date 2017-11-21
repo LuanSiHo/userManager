@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
               android:gravity="center_vertical"
-              android:padding="16dp"
+              android:padding="5dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/img_menu_item"
         android:src="@mipmap/ic_launcher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="@dimen/slide_menu_image_size"
+        android:layout_height="@dimen/slide_menu_image_size"/>
 
     <TextView
         android:textColor="@color/colorBlack"

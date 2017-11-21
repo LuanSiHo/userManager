@@ -29,15 +29,16 @@
 
                     <ImageButton
                         android:id="@+id/img_btn_open_slide_menu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/slide_menu_image_size"
+                        android:layout_height="@dimen/slide_menu_image_size"
                         android:background="@android:color/transparent"
                         android:src="@drawable/ic_menu"/>
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
+                        android:gravity="center_vertical"
                         android:text="Home Activity"
                         android:textColor="@color/colorWhite"
                         android:textSize="19sp"/>
@@ -122,7 +123,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4.5"
+                android:layout_weight="3.5"
                 android:background="@color/colorPrimary"
                 android:gravity="center_horizontal">
 
@@ -135,41 +136,49 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:layout_height="0dp"
+                android:layout_weight="4.5"
                 android:background="@color/colorWhite">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerview_slide_menu"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                 </android.support.v7.widget.RecyclerView>
             </LinearLayout>
 
+
             <LinearLayout
-                android:weightSum="2"
-                android:orientation="horizontal"
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="0dp"
+                android:layout_weight="1.25"
+                android:orientation="horizontal">
+
                 <Button
+                    android:id="@+id/btn_show_dialog_activity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="dialog activity"
-                    android:id="@+id/btn_show_dialog_activity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"/>
+                    android:textSize="12sp"/>
+
                 <Button
-                    android:layout_weight="1"
-                    android:text="network activity"
                     android:id="@+id/btn_show_social_network_activity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"/>
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="network activity"
+                    android:textSize="12sp"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_height="0dp"
+                android:layout_weight="0.75"
                 android:gravity="center_horizontal|bottom">
 
                 <Button
@@ -180,7 +189,7 @@
                     android:text="Log Out"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="19sp"/>
+                    android:textSize="16sp"/>
             </LinearLayout>
         </LinearLayout>
     </android.support.design.widget.NavigationView>

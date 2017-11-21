@@ -48,13 +48,14 @@ public class HomeActivity extends AppCompatActivity
         if (username != null) {
             welcomeTextView.setText("Welcome " + username);
         }
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         recyclerViewSlideMenuAdapter.setDefaultSelectedPosition();
-        this.overridePendingTransition(R.anim.anim_slideup, R.anim.anim_slidedown);
+//        this.overridePendingTransition(R.anim.anim_slideup, R.anim.anim_slidedown);
     }
 
     private void setView() {
@@ -175,5 +176,4 @@ public class HomeActivity extends AppCompatActivity
                 break;
         }
     }
-
 }
